@@ -85,3 +85,12 @@
   numcol: 2,
   foot-info: [Institution of Structural Engineers. Published by Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.]
 )
+
+#let techno = (
+  name: "Techno Science Research Journal",
+  address: "http://techno-srj.itc.edu.kh",
+  logo: image("resources/journals/research.png", height: 100%),
+  font: default-font,
+  numcol: 2,
+  foot-info: [The Author(s). Published by Elsevier B. V.]
+)

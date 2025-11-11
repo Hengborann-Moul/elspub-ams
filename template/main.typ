@@ -1,8 +1,8 @@
-#import "@preview/elspub:0.2.1": *
-// #import "../src/elspub.typ": *
+// #import "@preview/elspub:0.2.1": *
+#import "../src/elspub.typ": *
 
 #show: elspub.with(
-  journal: newast,
+  journal: techno,
   paper-type: none,
   title: [Foundations of geometric thought: From practical measurement to mathematical harmony],
   keywords: (
@@ -18,7 +18,7 @@
     "a": [School of Pythagoreans, Croton, Magna Graecia],
     "b": [Milesian School of Natural Philosophy, Miletus, Ionia],
   ),
-  abstract: lorem(100),
+  abstract: lorem(250),
   paper-info: (
     year: [510 BCE],
     paper-id: [123456],

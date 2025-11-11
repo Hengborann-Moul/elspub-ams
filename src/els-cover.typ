@@ -1,19 +1,25 @@
 #import "els-journal.typ": *
 
 #let top-bar(
-  logo: image("resources/Elsevier.svg", height: 100%),
+  logo: image("resources/itc_logo_text.png", height: 100%),
   header,
   journal-image: none
 ) = table(
-  columns: (2.4cm, 1fr, 2cm),
+  columns: (2.5cm, 1fr, 2.5cm),
   rows: (1pt, 2.5cm, auto),
-  column-gutter: 1.5em,
+  column-gutter: 1em,
   row-gutter: 0.5em,
   align: (left+horizon, center, left),
   stroke: none,
-  table.hline(stroke: 0.5pt, end: 2),
+  table.hline(stroke: 1.5pt),
   table.cell(colspan: 2)[],
-  table.cell(rowspan: 2, inset: -1pt, journal-image),
+  table.cell(rowspan: 2,
+    inset: (
+      top: 5pt,
+      right: 0pt,
+      bottom: 0pt,
+      left: 0pt
+    ), journal-image),
   table.cell(
     inset: (
       top: -3pt,
@@ -25,8 +31,8 @@
     fill: gray.lighten(80%),
     header
   ),
-  table.cell(inset: 2pt, colspan: 3)[],
-  table.hline(stroke: 3pt)
+  // table.cell(inset: 2pt, colspan: 3)[],
+  table.hline(stroke: 3pt + rgb("#009193"))
 )
 
 #let make-precis(
@@ -34,35 +40,20 @@
   abstract: [],
   extra-info: none
 ) = table(
-  columns: (0.4fr, 1.1fr),
-  rows: (1cm, auto),
-  inset: (x: 0pt, y: 4pt),
-  column-gutter: 2.5em,
-  row-gutter: 0.25cm,
+  inset: (x: 0pt, y: 0pt),
   stroke: none,
-  table.hline(stroke: 0.5pt),
-  v(1fr)+text(size: 8.5pt, tracking: 4pt, smallcaps[ARTICLE INFO]),
-  table.hline(end: 1, stroke: 0.5pt),
-  v(1fr)+text(size: 8.5pt, tracking: 4pt, smallcaps[ABSTRACT]),
-  table.hline(start: 1, end: 2, stroke: 0.5pt),
-  text(size: 6.4pt)[
-    #if extra-info != none {
-      extra-info
-      linebreak()
-      line(length: 100%, stroke: 0.5pt)
-      v(-0.65em)
-    }
-    _Keywords:_\
-    #for keyword in keywords{
-      keyword
-      linebreak()
-    }
+  table.hline(stroke: 0.5pt + rgb("#009193")),
+  block(inset: 5pt, fill: rgb("#f4f4f4"))[
+    #par(justify: true, text(size: 10pt, weight: "bold", "Abstract: ") + text(size: 10pt, style: "italic", abstract))
   ],
-  [
-    #par(justify: true, text(size: 7.2pt, abstract))
-    #v(1em)
+  table.hline(stroke: 0.5pt + rgb("#009193")),
+  text()[
+    #v(4pt)
+    #text(size: 10pt, weight: "bold", "Keywords: ")
+    #text(size: 10pt, keywords.join([,]))
+    #v(4pt)
   ],
-  table.hline(stroke: 0.5pt),
+  table.hline(stroke: 0.5pt + rgb("#009193")),
 )
 
 #let make-institution(key, value) = {
@@ -74,8 +65,8 @@
   text(style:"italic", value)
 }
 
-#let make-institutions(institutions) = par({
-  set text(size: 6.4pt)
+#let make-institutions(institutions) = align(center,{
+  set text(size: 10pt)
   for (key, value) in institutions{
     make-institution(key, value)
     linebreak()
@@ -111,8 +102,8 @@
   }
 })
 
-#let make-authors(authors) = par({
-  set text(size: 10.6pt)
+#let make-authors(authors) = align(center, {
+  set text(size: 12pt)
   authors.map(make-author).join(", ")
 })
 
@@ -123,10 +114,10 @@
   institutions: ()
 ) = {
   show par: block.with(below: 0em)
-  v(0.75em)
-  par(text(size: 9.6pt, paper-type))
-  v(1.5em)
-  par(text(size: 13.4pt, title))
+  // v(0.75em)
+  // par(text(size: 9.6pt, paper-type))
+  // v(1.5em)
+  align(center, text(size: 15pt, weight: "bold", title))
   v(1.5em)
   make-authors(authors)
   v(1.25em)
@@ -156,7 +147,7 @@
   let journal-header = [#journal.name #paper-info.volume (#paper-info.year)  #paper-info.paper-id]
 
   return context if counter(page).get().first() == 1 {
-    align(center,text(size: 7.2pt)[#link(doi, journal-header)])
+    align(center,text(size: 11pt)[#link(doi, journal-header)])
   } else {
       grid(
         columns: (1fr, 1fr),

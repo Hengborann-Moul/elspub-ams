@@ -22,7 +22,7 @@
   let paper-information = paper-info-default + paper-info
 
   // Text
-  set text(size: 8pt, font: new-journal.font.text)
+  set text(size: 10pt, font: new-journal.font.text)
 
   // Math
   show: equate.with(breakable: true, sub-numbering: true)
@@ -52,11 +52,11 @@
   )
 
   top-bar({
-      text(size: 8pt)[Contents lists available at #link("https://"+new-journal.address, "ScienceDirect")]
+    text(size: 11pt, weight: "bold", fill: rgb("#009193"))[Content list available at ITC]
       v(1fr)
-      text(size:13.9pt)[#new-journal.name]
+      text(size:20pt)[#new-journal.name]
       v(1fr)
-      text(size: 8pt, font: new-journal.font.homepage)[journal homepage: #link("https://"+new-journal.address, strong(delta: 100, new-journal.address))]
+      text(size: 11pt, font: new-journal.font.homepage)[journal homepage: #link("https://"+new-journal.address, strong(delta: 100, new-journal.address))]
     },
     journal-image: new-journal.logo,
   )

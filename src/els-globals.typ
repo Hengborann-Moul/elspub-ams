@@ -1,7 +1,7 @@
 #let default-font = (
-  text: ("Charis SIL", "New Computer Modern"),
+  text: ("Times New Roman", "Charis SIL", "New Computer Modern"),
   math: ("XITS Math", "STIX Two Math","New Computer Modern Math"),
-  homepage: ("Roboto", "New Computer Modern"),
+  homepage: ("Times New Roman", "Roboto", "New Computer Modern"),
 )
 
 // Licence information
